@@ -1,0 +1,6 @@
+SELECT s.order_date,SUM(s.quantity*CAST(REPLACE(REPLACE(TRIM(p.unit_price_usd),'$',''),',','')AS NUMERIC)) AS total_rev
+FROM products p
+JOIN sales s
+ON p.productkey=s.productkey
+WHERE order_date>='2016-01-03' AND order_date>= '2017-01-01' 
+GROUP BY s.order_date;
